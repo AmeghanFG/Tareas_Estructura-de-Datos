@@ -6,7 +6,7 @@
     <title>Ejercicio Inventario</title>
     <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
     <script src="inventario.js"></script>
-    <script src="producto.js"></script> <!--Como no se interactua directamente, ni se vinculan directamente con algun elemento, se pueden poner en el head, en un proyecto real esto no esta aquí, si no que esta en un servidor (estructura de datos en un servidor)-->
+    <script src="producto.js"></script>
 </head>
 <body class="bg-blue-100 min-h-screen flex items-center justify-center flex-col">
 
@@ -14,7 +14,7 @@
 
     <div id="app" class="bg-white shadow-lg rounded-xl p-8 max-w-3/4 w-full">
 
-        <form action="" class="space-y-4"> <!--Conviene que los formularios esten agrupados-->
+        <form action="" class="space-y-4">
             <label for="txtCod" class="block font-medium mb-1">Código: 
                 <input type="text" id="txtCod" placeholder="Ingresa un código" class="w-1/4 px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"> 
             </label>
@@ -36,7 +36,7 @@
             <button type="button" id="btnExtractFirst" class="bg-blue-600 text-white font-semibold px-6 py-2 rounded-md hover:bg-blue-700 transition">Extraer primero</button> <!--* Extraer primer elemento-->
             <button type="button" id="btnExtractLast" class="bg-blue-600 text-white font-semibold px-6 py-2 rounded-md hover:bg-blue-700 transition">Extraer último</button> <!--* Extraer el último elemento-->
             
-            <button type="reset" id="btnReset" class="bg-blue-600 text-white font-semibold px-6 py-2 rounded-md hover:bg-blue-700 transition">Cancelar</button> <!--No lo limpia, lo resetea-->
+            <button type="reset" id="btnReset" class="bg-blue-600 text-white font-semibold px-6 py-2 rounded-md hover:bg-blue-700 transition">Cancelar</button>
         </form>
         
     </div>
