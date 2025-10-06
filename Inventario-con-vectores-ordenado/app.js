@@ -2,7 +2,7 @@ const miInventario = new Inventario(); // * Creación de un inventario
 
 console.log(miInventario);
 
-// Agregar
+//! Agregar de manera ordenada
 const btnAdd = document.getElementById("btnAdd");
 btnAdd.addEventListener("click", () => {
   // Obtener valores de producto
@@ -17,24 +17,24 @@ btnAdd.addEventListener("click", () => {
   let resultado = miInventario.agregar(nuevo);
 
   if (resultado) {
-    mg.innerHTML += resultado; // Resultado de error
+    mg.innerHTML += resultado;
   } else {
     mg.innerHTML += `<h5>Se agregó</h5> \n <p>${nuevo.info()}</p>`;
   }
 });
-// Si pusieramos .infoHTML(), no regresaría texto plano, si no que te regresa html para que el usuario pueda ver dicha información
 
-// Listar
+//* Listar
 const btnList = document.getElementById("btnList");
 btnList.addEventListener("click", () => {
   let msg = document.getElementById("detalles");
   msg.innerHTML =
     '<h3 class="text-2xl font-bold text-gray-800 mb-4 border-b pb-2">Lista de Productos</h3>';
   msg.innerHTML += miInventario.listar();
-  // listarHTML
 });
 
-// Buscar
+// ! Listar invverso
+
+//* Buscar
 const btnFind = document.getElementById("btnFind");
 
 btnFind.addEventListener("click", () => {
@@ -52,56 +52,7 @@ btnFind.addEventListener("click", () => {
   }
 });
 
-// Agregar inicio
-const btnAddBeginnig = document.getElementById("btnAddBeginnig");
-btnAddBeginnig.addEventListener("click", () => {
-  // Obtener valores de producto
-  let codigo = document.getElementById("txtCod").value;
-  let nombre = document.getElementById("txtNom").value;
-  let cantidad = document.getElementById("numCant").value;
-  let costo = document.getElementById("numCost").value;
-
-  let msg = document.getElementById("detalles");
-  msg.innerHTML = "";
-  msg.innerHTML =
-    '<h3 class="text-2xl font-bold text-gray-800 mb-4 border-b pb-2">Producto agregado</h3>';
-
-  let nuevo = new Producto(codigo, nombre, cantidad, costo);
-  let resultado = miInventario.agregarInicio(nuevo);
-
-  if (resultado) {
-    msg.innerHTML += resultado;
-  } else {
-    msg.innerHTML += nuevo.info();
-  }
-});
-
-// Insertar producto
-const btnInsert = document.getElementById("btnInsert");
-btnInsert.addEventListener("click", () => {
-  let codigo = document.getElementById("txtCod").value;
-  let nombre = document.getElementById("txtNom").value;
-  let cantidad = document.getElementById("numCant").value;
-  let costo = document.getElementById("numCost").value;
-
-  let posicion = parseInt(document.getElementById("numPos").value);
-
-  let msg = document.getElementById("detalles");
-  msg.innerHTML = "";
-  msg.innerHTML =
-    '<h3 class="text-2xl font-bold text-gray-800 mb-4 border-b pb-2">Producto insertado</h3>';
-
-  let nuevo = new Producto(codigo, nombre, cantidad, costo);
-  let resultado = miInventario.insertar(posicion, nuevo);
-
-  if (resultado) {
-    msg.innerHTML += resultado;
-  } else {
-    msg.innerHTML += nuevo.info();
-  }
-});
-
-// Eliminar
+//* Eliminar
 const btnDelete = document.getElementById("btnDelete");
 btnDelete.addEventListener("click", () => {
   let codigo = document.getElementById("txtCod").value;
@@ -122,7 +73,7 @@ btnDelete.addEventListener("click", () => {
   }
 });
 
-// Extraer primer elemento
+//* Extraer primer elemento
 const btnExtractFirst = document.getElementById("btnExtractFirst");
 btnExtractFirst.addEventListener("click", () => {
   let msg = document.getElementById("detalles");
@@ -138,3 +89,5 @@ btnExtractFirst.addEventListener("click", () => {
       "<p class='text-red-600'>Hubo un error al extraer el elemento</p>";
   }
 });
+
+//! Extraer último producto
