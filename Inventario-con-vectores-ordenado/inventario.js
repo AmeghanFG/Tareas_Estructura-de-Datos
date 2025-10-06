@@ -15,7 +15,7 @@ class Inventario {
     this.productos = [];
   }
 
-  //! Agregar por orden
+  //* Agregar por orden
   agregar(producto) {
     if (this._validarCodigo(producto.codigo)) {
       let posicion = this._encontrarPosicion(producto.codigo);
@@ -54,7 +54,7 @@ class Inventario {
     return info;
   }
 
-  //* Listar información
+  //* Listar información inversa
   listarInverso() {
     let info = "";
     for (let i = this.productos.length - 1; i >= 0; i--) {
@@ -62,8 +62,6 @@ class Inventario {
     }
     return info;
   }
-
-  // ! Listar información inversa
 
   //* Eliminar
   eliminar(codigo) {

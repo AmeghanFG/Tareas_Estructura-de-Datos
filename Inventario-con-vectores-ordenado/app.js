@@ -2,7 +2,7 @@ const miInventario = new Inventario(); // * Creación de un inventario
 
 console.log(miInventario);
 
-//! Agregar de manera ordenada
+//* Agregar de manera ordenada
 const btnAdd = document.getElementById("btnAdd");
 btnAdd.addEventListener("click", () => {
   // Obtener valores de producto
@@ -32,7 +32,14 @@ btnList.addEventListener("click", () => {
   msg.innerHTML += miInventario.listar();
 });
 
-// ! Listar invverso
+//* Listar inverso
+const btnListReverse = document.getElementById("btnListReverse");
+btnListReverse.addEventListener("click", () => {
+  let msg = document.getElementById("detalles");
+  msg.innerHTML =
+    '<h3 class="text-2xl font-bold text-gray-800 mb-4 border-b pb-2">Lista inversa de Productos</h3>';
+  msg.innerHTML += miInventario.listarInverso();
+});
 
 //* Buscar
 const btnFind = document.getElementById("btnFind");
