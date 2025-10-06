@@ -1,15 +1,3 @@
-// Datos producto:  código, nombre, cantidad y costo
-
-/*
-agregar -
-buscar por código -
-eliminar por código -
-recuperar el listado como texto -
-extraer el primer elemento (devolverlo y eliminarlo)  -
-extraer el último elemento
-recuperar el listado en orden inverso -
-*/
-
 class Inventario {
   constructor() {
     this.productos = [];
