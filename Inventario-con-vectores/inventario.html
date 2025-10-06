@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio Inventario</title>
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+    <script src="inventario.js"></script>
+    <script src="producto.js"></script> <!--Como no se interactua directamente, ni se vinculan directamente con algun elemento, se pueden poner en el head, en un proyecto real esto no esta aquí, si no que esta en un servidor (estructura de datos en un servidor)-->
+</head>
+<body class="bg-blue-100 min-h-screen flex items-center justify-center flex-col">
+
+    <h1 class="text-2xl  font-bold text-center text-blue-700 mb-6">Inventario</h1>
+
+    <div id="app" class="bg-white shadow-lg rounded-xl p-8 max-w-3/4 w-full">
+
+        <form action="" class="space-y-4"> <!--Conviene que los formularios esten agrupados-->
+            <label for="txtCod" class="block font-medium mb-1">Código: 
+                <input type="text" id="txtCod" placeholder="Ingresa un código" class="w-1/4 px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"> 
+            </label>
+            <label for="txtNom" class="block font-medium mb-1">Nombre: 
+                <input type="text" id="txtNom" placeholder="Ingresa el nombre del producto" value="1" class="w-1/4 px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"> 
+            </label>
+            <label for="numCant" class="block font-medium mb-1">Cantidad: 
+                <input type="number" id="numCant" placeholder="Ingresa la cantidad" value="1" class="w-1/4 px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"> 
+            </label>
+            <label for="numCost" class="block font-medium mb-1">Costo: 
+                <input type="number" id="numCost" placeholder="Ingresa el costo del producto" value="1" class="w-1/4 px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"> 
+            </label>
+            <!-- Agrega este input en el formulario, antes del botón Insertar -->
+            <label for="numPos" class="block font-medium mb-1">Posición: 
+                <input type="number" id="numPos" min="0" value="0" class="w-1/4 px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"> 
+            </label>
+
+            <button type="button" id="btnAdd" class="bg-blue-600 text-white font-semibold px-6 py-2 rounded-md hover:bg-blue-700 transition">Agregar</button> <!--* Agregar-->
+            <button type="button" id="btnAddBeginnig" class="bg-blue-600 text-white font-semibold px-6 py-2 rounded-md hover:bg-blue-700 transition">Agregar al inicio</button> <!--* Agregar al inicio-->
+            <button type="button" id="btnFind" class="bg-blue-600 text-white font-semibold px-6 py-2 rounded-md hover:bg-blue-700 transition">Buscar</button> <!--* Buscar-->
+            <button type="button" id="btnList" class="bg-blue-600 text-white font-semibold px-6 py-2 rounded-md hover:bg-blue-700 transition">Listar</button> <!--* Listar-->
+            <button type="button" id="btnInsert" class="bg-blue-600 text-white font-semibold px-6 py-2 rounded-md hover:bg-blue-700 transition">Insertar</button> <!--* Insertar-->
+            <button type="button" id="btnDelete" class="bg-blue-600 text-white font-semibold px-6 py-2 rounded-md hover:bg-blue-700 transition">Eliminar</button> <!--* Eliminar-->
+            <button type="button" id="btnExtractFirst" class="bg-blue-600 text-white font-semibold px-6 py-2 rounded-md hover:bg-blue-700 transition">Extraer primero</button> <!--* Extraer primer elemento-->
+            
+            <button type="reset" id="btnReset" class="bg-blue-600 text-white font-semibold px-6 py-2 rounded-md hover:bg-blue-700 transition">Cancelar</button> <!--No lo limpia, lo resetea-->
+        </form>
+        
+    </div>
+    <div id="detalles" class="bg-white shadow-lg rounded-xl p-8 max-w-3/4 w-full mt-5">
+        <h3 class="text-2xl font-bold text-gray-800 mb-4 border-b pb-2">Detalles</h3>
+    </div>
+
+    <script>
+        const miInventario = new Inventario(); // * Creación de un inventario
+
+        console.log(miInventario);
+
+        // Agregar
+        const btnAdd = document.getElementById('btnAdd');
+        btnAdd.addEventListener('click', () => {
+            // Obtener valores de producto
+            let codigo = document.getElementById('txtCod').value;
+            let nombre = document.getElementById('txtNom').value;
+            let cantidad = document.getElementById('numCant').value;
+            let costo = document.getElementById('numCost').value;
+
+            let nuevo = new Producto(codigo, nombre, cantidad, costo);
+            let mg = document.getElementById('detalles');
+            mg.innerHTML = '';
+            let resultado = miInventario.agregar(nuevo);
+
+            if (resultado) {
+                mg.innerHTML += resultado; // Resultado de error
+            } else {
+                mg.innerHTML += `<h5>Se agregó</h5> \n <p>${nuevo.info()}</p>`;
+            }
+        });
+        // Si pusieramos .infoHTML(), no regresaría texto plano, si no que te regresa html para que el usuario pueda ver dicha información
+
+        // Listar
+        const btnList = document.getElementById('btnList');
+        btnList.addEventListener('click', () => {
+            let msg = document.getElementById('detalles');
+            msg.innerHTML = '<h3 class="text-2xl font-bold text-gray-800 mb-4 border-b pb-2">Lista de Productos</h3>';
+            msg.innerHTML += miInventario.listar();
+            // listarHTML
+        });
+
+        // Buscar
+        const btnFind = document.getElementById('btnFind');
+
+        btnFind.addEventListener('click', () => {
+            let msg = document.getElementById('detalles');
+            msg.innerHTML = '';
+            msg.innerHTML = '<h3 class="text-2xl font-bold text-gray-800 mb-4 border-b pb-2">Busqueda de productos</h3>';
+            
+            const codigo = document.getElementById('txtCod');
+            let resultado = miInventario.buscar(codigo.value);
+            if (resultado) {
+                msg.innerHTML += resultado;
+            } else {
+                msg.innerHTML += "<p class='text-red-600'>No existe el producto</p>";
+            }
+        });
+
+        // Agregar inicio
+        const btnAddBeginnig = document.getElementById('btnAddBeginnig');
+        btnAddBeginnig.addEventListener('click', () => {
+            // Obtener valores de producto
+            let codigo = document.getElementById('txtCod').value;
+            let nombre = document.getElementById('txtNom').value;
+            let cantidad = document.getElementById('numCant').value;
+            let costo = document.getElementById('numCost').value;
+
+            let msg = document.getElementById('detalles');
+            msg.innerHTML = '';
+            msg.innerHTML = '<h3 class="text-2xl font-bold text-gray-800 mb-4 border-b pb-2">Producto agregado</h3>';
+
+            let nuevo = new Producto(codigo, nombre, cantidad, costo);
+            let resultado = miInventario.agregarInicio(nuevo);
+
+            if (resultado) {
+                msg.innerHTML += resultado;
+            } else {
+                msg.innerHTML += nuevo.info();
+            }
+        });
+
+        // Insertar producto
+        const btnInsert = document.getElementById('btnInsert');
+        btnInsert.addEventListener('click', () => { 
+            let codigo = document.getElementById('txtCod').value;
+            let nombre = document.getElementById('txtNom').value;
+            let cantidad = document.getElementById('numCant').value;
+            let costo = document.getElementById('numCost').value;
+
+            let posicion = parseInt(document.getElementById('numPos').value);
+            
+            let msg = document.getElementById('detalles');
+            msg.innerHTML = '';
+            msg.innerHTML = '<h3 class="text-2xl font-bold text-gray-800 mb-4 border-b pb-2">Producto insertado</h3>';
+            
+            let nuevo = new Producto(codigo, nombre, cantidad, costo);
+            let resultado = miInventario.insertar(posicion, nuevo);
+            
+            if (resultado) {
+                msg.innerHTML += resultado;
+            } else {
+                msg.innerHTML += nuevo.info();
+            }
+        }); 
+
+        // Eliminar 
+        const btnDelete = document.getElementById('btnDelete');
+        btnDelete.addEventListener('click', () => {
+            let codigo = document.getElementById('txtCod').value;
+
+            let msg = document.getElementById('detalles');
+            msg.innerHTML = '';
+            msg.innerHTML = '<h3 class="text-2xl font-bold text-gray-800 mb-4 border-b pb-2">Producto Eliminado</h3>';
+
+            if (codigo) {
+                let resultado = miInventario.eliminar(codigo);
+                if (resultado) {
+                    msg.innerHTML += "<p class='text-black-600'>Elemento eliminado</p>"
+                } else {
+                    msg.innerHTML += "<p class='text-red-600'>No se pudo eliminar el producto</p>"
+                }
+            }
+        });
+
+        // Extraer primer elemento
+        const btnExtractFirst = document.getElementById('btnExtractFirst');
+        btnExtractFirst.addEventListener('click', () => {
+            let msg = document.getElementById('detalles');
+            msg.innerHTML = '';
+            msg.innerHTML = '<h3 class="text-2xl font-bold text-gray-800 mb-4 border-b pb-2">Producto Extraido</h3>';
+
+            let resultado = miInventario.extraerPrimero();
+            if (resultado) {
+                msg.innerHTML += resultado.info();
+            } else {
+                msg.innerHTML += "<p class='text-red-600'>Hubo un error al extraer el elemento</p>"
+            }
+        });
+    </script>
+</body>
+</html>
