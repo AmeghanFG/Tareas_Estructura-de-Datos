@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio Inventario</title>
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+    <script src="inventario.js"></script>
+    <script src="producto.js"></script> <!--Como no se interactua directamente, ni se vinculan directamente con algun elemento, se pueden poner en el head, en un proyecto real esto no esta aquí, si no que esta en un servidor (estructura de datos en un servidor)-->
+</head>
+<body class="bg-blue-100 min-h-screen flex items-center justify-center flex-col">
+
+    <h1 class="text-2xl  font-bold text-center text-blue-700 mb-6">Inventario</h1>
+
+    <div id="app" class="bg-white shadow-lg rounded-xl p-8 max-w-3/4 w-full">
+
+        <form action="" class="space-y-4"> <!--Conviene que los formularios esten agrupados-->
+            <label for="txtCod" class="block font-medium mb-1">Código: 
+                <input type="text" id="txtCod" placeholder="Ingresa un código" class="w-1/4 px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"> 
+            </label>
+            <label for="txtNom" class="block font-medium mb-1">Nombre: 
+                <input type="text" id="txtNom" placeholder="Ingresa el nombre del producto" value="1" class="w-1/4 px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"> 
+            </label>
+            <label for="numCant" class="block font-medium mb-1">Cantidad: 
+                <input type="number" id="numCant" placeholder="Ingresa la cantidad" value="1" class="w-1/4 px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"> 
+            </label>
+            <label for="numCost" class="block font-medium mb-1">Costo: 
+                <input type="number" id="numCost" placeholder="Ingresa el costo del producto" value="1" class="w-1/4 px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"> 
+            </label>
+
+            <button type="button" id="btnAdd" class="bg-blue-600 text-white font-semibold px-6 py-2 rounded-md hover:bg-blue-700 transition">Agregar</button> <!--* Agregar-->
+            <button type="button" id="btnFind" class="bg-blue-600 text-white font-semibold px-6 py-2 rounded-md hover:bg-blue-700 transition">Buscar</button> <!--* Buscar-->
+            <button type="button" id="btnList" class="bg-blue-600 text-white font-semibold px-6 py-2 rounded-md hover:bg-blue-700 transition">Listar</button> <!--* Listar-->
+            <button type="button" id="btnDelete" class="bg-blue-600 text-white font-semibold px-6 py-2 rounded-md hover:bg-blue-700 transition">Eliminar</button> <!--* Eliminar-->
+            <button type="button" id="btnExtractFirst" class="bg-blue-600 text-white font-semibold px-6 py-2 rounded-md hover:bg-blue-700 transition">Extraer primero</button> <!--* Extraer primer elemento-->
+            
+            <button type="reset" id="btnReset" class="bg-blue-600 text-white font-semibold px-6 py-2 rounded-md hover:bg-blue-700 transition">Cancelar</button> <!--No lo limpia, lo resetea-->
+        </form>
+        
+    </div>
+    <div id="detalles" class="bg-white shadow-lg rounded-xl p-8 max-w-3/4 w-full mt-5">
+        <h3 class="text-2xl font-bold text-gray-800 mb-4 border-b pb-2">Detalles</h3>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
