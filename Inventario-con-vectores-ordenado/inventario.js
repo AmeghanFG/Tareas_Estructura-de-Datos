@@ -1,13 +1,13 @@
 // Datos producto:  código, nombre, cantidad y costo
 
 /*
-agregar
+agregar -
 buscar por código -
 eliminar por código -
 recuperar el listado como texto -
 extraer el primer elemento (devolverlo y eliminarlo)  -
 extraer el último elemento
-recuperar el listado en orden inverso
+recuperar el listado en orden inverso -
 */
 
 class Inventario {
@@ -112,5 +112,10 @@ class Inventario {
     return true;
   }
 
-  //! Extraer último
+  //* Extraer último
+  extraerUltimo() {
+    let ultimoProducto = this.productos[this.productos.length - 1];
+    this.eliminar(this.productos[this.productos.length - 1].codigo);
+    return ultimoProducto;
+  }
 }

@@ -97,4 +97,19 @@ btnExtractFirst.addEventListener("click", () => {
   }
 });
 
-//! Extraer último producto
+//* Extraer último producto
+const btnExtractLast = document.getElementById("btnExtractLast");
+btnExtractLast.addEventListener("click", () => {
+  let msg = document.getElementById("detalles");
+  msg.innerHTML = "";
+  msg.innerHTML =
+    '<h3 class="text-2xl font-bold text-gray-800 mb-4 border-b pb-2">Producto Extraido</h3>';
+
+  let resultado = miInventario.extraerUltimo();
+  if (resultado) {
+    msg.innerHTML += resultado.info();
+  } else {
+    msg.innerHTML +=
+      "<p class='text-red-600'>Hubo un error al extraer el elemento</p>";
+  }
+});
