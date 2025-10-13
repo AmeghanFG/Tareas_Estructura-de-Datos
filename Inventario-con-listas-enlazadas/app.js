@@ -16,12 +16,15 @@ btnAdd.addEventListener("click", () => {
   let nuevo = new Producto(codigo, nombre, cantidad, costo);
   let mg = document.getElementById("detalles");
   mg.innerHTML = "";
+  mg.innerHTML =
+    '<h3 class="text-2xl font-bold text-gray-800 mb-4 border-b pb-2">Agregar Productos</h3>';
+
   let resultado = miInventario.agregar(nuevo);
 
   if (resultado) {
     mg.innerHTML += `<h5>Se agregó</h5>\n<p>${nuevo.info()}</p>`;
   } else {
-    mg.innerHTML += `<h5>No se pudo agregar</h5>`;
+    mg.innerHTML += `<h5 class='text-red-600'>No se pudo agregar</h5>`;
   }
 });
 
