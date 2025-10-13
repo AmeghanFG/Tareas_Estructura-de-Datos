@@ -75,17 +75,6 @@ btnDelete.addEventListener("click", () => {
   }
 });
 
-/*
-
-//* Listar inverso
-const btnListReverse = document.getElementById("btnListReverse");
-btnListReverse.addEventListener("click", () => {
-  let msg = document.getElementById("detalles");
-  msg.innerHTML =
-    '<h3 class="text-2xl font-bold text-gray-800 mb-4 border-b pb-2">Lista inversa de Productos</h3>';
-  msg.innerHTML += miInventario.listarInverso();
-});
-
 //* Extraer primer elemento
 const btnExtractFirst = document.getElementById("btnExtractFirst");
 btnExtractFirst.addEventListener("click", () => {
@@ -99,8 +88,19 @@ btnExtractFirst.addEventListener("click", () => {
     msg.innerHTML += resultado.info();
   } else {
     msg.innerHTML +=
-      "<p class='text-red-600'>Hubo un error al extraer el elemento</p>";
+      "<p class='text-red-600'>No se pudo al extraer el primer elemento, verifica que haya productos</p>";
   }
+});
+
+/*
+
+//* Listar inverso
+const btnListReverse = document.getElementById("btnListReverse");
+btnListReverse.addEventListener("click", () => {
+  let msg = document.getElementById("detalles");
+  msg.innerHTML =
+    '<h3 class="text-2xl font-bold text-gray-800 mb-4 border-b pb-2">Lista inversa de Productos</h3>';
+  msg.innerHTML += miInventario.listarInverso();
 });
 
 //* Extraer último producto

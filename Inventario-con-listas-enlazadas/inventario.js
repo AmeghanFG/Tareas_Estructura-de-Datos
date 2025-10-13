@@ -63,7 +63,7 @@ class Inventario {
 
   //* Eliminar
   eliminar(codigo) {
-    if (this.buscar(codigo) != null || !this.primero) {
+    if (this.buscar(codigo) != null) {
       // Caso: Primero nodo
       if (this.primero.codigo == codigo) {
         this.primero = this.primero.siguiente;
@@ -77,6 +77,10 @@ class Inventario {
         temp = temp.siguiente;
       }
 
+      if (temp.siguiente == null) {
+        return false; // No encontrado
+      }
+
       // Caso: Eliminar nodo
       temp.siguiente = temp.siguiente.siguiente;
       return true;
@@ -85,18 +89,18 @@ class Inventario {
     }
   }
 
-  /*
-  _encontrarPosicion(codigo) {
-    let i = 0;
-    while (
-      i < this.productos.length &&
-      Number(codigo) > Number(this.productos[i].codigo)
-    ) {
-      i++;
+  // Extraer el 1er elemento  (devolverlo y eliminarlo)
+  extraerPrimero() {
+    if (this.primero) {
+      let primerProducto = this.primero;
+      this.primero = this.primero.siguiente;
+      return primerProducto;
+    } else {
+      return false;
     }
-
-    return i;
   }
+
+  /*
 
   //* Listar información inversa
   listarInverso() {
@@ -105,13 +109,6 @@ class Inventario {
       info += this.productos[i].info() + "\n";
     }
     return info;
-  }
-
-  // Extraer el 1er elemento  (devolverlo y eliminarlo)
-  extraerPrimero() {
-    let primerProducto = this.productos[0];
-    this.eliminar(this.productos[0].codigo);
-    return primerProducto;
   }
 
   // Validación de codigo
