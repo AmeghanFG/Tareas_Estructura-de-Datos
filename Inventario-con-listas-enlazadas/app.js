@@ -1,0 +1,1 @@
+// extraerInicio() -> devuelve el nodo y lo quita                agregarInicio(nuevo)
