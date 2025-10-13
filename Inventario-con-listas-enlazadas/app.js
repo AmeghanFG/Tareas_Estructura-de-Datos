@@ -19,9 +19,9 @@ btnAdd.addEventListener("click", () => {
   let resultado = miInventario.agregar(nuevo);
 
   if (resultado) {
-    mg.innerHTML += resultado;
+    mg.innerHTML += `<h5>Se agregó</h5>\n<p>${nuevo.info()}</p>`;
   } else {
-    mg.innerHTML += `<h5>Se agregó</h5> \n <p>${nuevo.info()}</p>`;
+    mg.innerHTML += `<h5>No se pudo agregar</h5>`;
   }
 });
 
@@ -46,21 +46,10 @@ btnFind.addEventListener("click", () => {
   const codigo = document.getElementById("txtCod");
   let resultado = miInventario.buscar(codigo.value);
   if (resultado) {
-    msg.innerHTML += resultado;
+    msg.innerHTML += resultado.info();
   } else {
     msg.innerHTML += "<p class='text-red-600'>No existe el producto</p>";
   }
-});
-
-/*
-
-//* Listar inverso
-const btnListReverse = document.getElementById("btnListReverse");
-btnListReverse.addEventListener("click", () => {
-  let msg = document.getElementById("detalles");
-  msg.innerHTML =
-    '<h3 class="text-2xl font-bold text-gray-800 mb-4 border-b pb-2">Lista inversa de Productos</h3>';
-  msg.innerHTML += miInventario.listarInverso();
 });
 
 //* Eliminar
@@ -78,10 +67,20 @@ btnDelete.addEventListener("click", () => {
     if (resultado) {
       msg.innerHTML += "<p class='text-black-600'>Elemento eliminado</p>";
     } else {
-      msg.innerHTML +=
-        "<p class='text-red-600'>No se pudo eliminar el producto</p>";
+      msg.innerHTML += "<p class='text-red-600'>No se elimino el producto</p>";
     }
   }
+});
+
+/*
+
+//* Listar inverso
+const btnListReverse = document.getElementById("btnListReverse");
+btnListReverse.addEventListener("click", () => {
+  let msg = document.getElementById("detalles");
+  msg.innerHTML =
+    '<h3 class="text-2xl font-bold text-gray-800 mb-4 border-b pb-2">Lista inversa de Productos</h3>';
+  msg.innerHTML += miInventario.listarInverso();
 });
 
 //* Extraer primer elemento
