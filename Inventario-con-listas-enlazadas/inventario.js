@@ -100,22 +100,12 @@ class Inventario {
     }
   }
 
-  /*
-
   //* Listar información inversa
-  listarInverso() {
-    let info = "";
-    for (let i = this.productos.length - 1; i >= 0; i--) {
-      info += this.productos[i].info() + "\n";
+  listarInverso(producto = this.primero) {
+    if (producto == null) {
+      return "";
+    } else {
+      return this.listarInverso(producto.siguiente) + producto.info() + "\n";
     }
-    return info;
   }
-
-  // Validación de codigo
-  _validarCodigo(codigo) {
-    if (this.buscar(codigo)) {
-      return false;
-    }
-    return true;
-  } */
 }

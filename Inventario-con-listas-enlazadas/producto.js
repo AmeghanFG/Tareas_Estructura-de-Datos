@@ -14,7 +14,6 @@ class Producto {
       <span><span class="font-semibold">Nombre:</span> ${this.nombre}</span>
       <span><span class="font-semibold">Cantidad:</span> ${this.cantidad}</span>
       <span><span class="font-semibold">Costo:</span> $${this.costo}</span>
-      <span><span class="font-semibold">Siguiente:</span> $${this.siguiente}</span>
     </div>
   `;
   }

@@ -92,8 +92,6 @@ btnExtractFirst.addEventListener("click", () => {
   }
 });
 
-/*
-
 //* Listar inverso
 const btnListReverse = document.getElementById("btnListReverse");
 btnListReverse.addEventListener("click", () => {
@@ -103,6 +101,7 @@ btnListReverse.addEventListener("click", () => {
   msg.innerHTML += miInventario.listarInverso();
 });
 
+/*
 //* Extraer último producto
 const btnExtractLast = document.getElementById("btnExtractLast");
 btnExtractLast.addEventListener("click", () => {
