@@ -34,17 +34,6 @@ btnList.addEventListener("click", () => {
   msg.innerHTML += miInventario.listar();
 });
 
-/*
-
-//* Listar inverso
-const btnListReverse = document.getElementById("btnListReverse");
-btnListReverse.addEventListener("click", () => {
-  let msg = document.getElementById("detalles");
-  msg.innerHTML =
-    '<h3 class="text-2xl font-bold text-gray-800 mb-4 border-b pb-2">Lista inversa de Productos</h3>';
-  msg.innerHTML += miInventario.listarInverso();
-});
-
 //* Buscar
 const btnFind = document.getElementById("btnFind");
 
@@ -61,6 +50,17 @@ btnFind.addEventListener("click", () => {
   } else {
     msg.innerHTML += "<p class='text-red-600'>No existe el producto</p>";
   }
+});
+
+/*
+
+//* Listar inverso
+const btnListReverse = document.getElementById("btnListReverse");
+btnListReverse.addEventListener("click", () => {
+  let msg = document.getElementById("detalles");
+  msg.innerHTML =
+    '<h3 class="text-2xl font-bold text-gray-800 mb-4 border-b pb-2">Lista inversa de Productos</h3>';
+  msg.innerHTML += miInventario.listarInverso();
 });
 
 //* Eliminar

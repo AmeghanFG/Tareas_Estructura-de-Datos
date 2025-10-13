@@ -6,6 +6,7 @@ class Inventario {
   //* Agregar por orden
   // TODO: Falta validar y devolver true o false
   agregar(producto) {
+    // -> != null
     if (!this.primero) {
       producto.siguiente = this.primero;
       this.primero = producto;
@@ -32,6 +33,18 @@ class Inventario {
       temp = temp.siguiente;
     }
     return info;
+  }
+
+  //* Buscar
+  buscar(codigo) {
+    let temp = this.primero;
+    while (temp != null) {
+      if (temp.codigo == codigo) {
+        return temp.info();
+      }
+      temp = temp.siguiente;
+    }
+    return null;
   }
 
   /*
@@ -78,16 +91,6 @@ class Inventario {
     }
 
     return i < this.productos.length ? i : -1;
-  }
-
-  //* Buscar
-  buscar(codigo) {
-    for (let i = 0; i < this.productos.length; i++) {
-      if (this.productos[i].codigo === codigo) {
-        return this.productos[i].info();
-      }
-    }
-    return null;
   }
 
   // Extraer el 1er elemento  (devolverlo y eliminarlo)
