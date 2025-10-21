@@ -4,7 +4,6 @@ class Inventario {
   }
 
   //* Agregar por orden
-  // TODO: Falta validar y devolver true o false
   agregar(producto) {
     if (this.buscar(producto.codigo) == null) {
       if (
@@ -32,7 +31,7 @@ class Inventario {
       productoX.siguiente = nuevo; // Se le asigna como siguiente el nuevo
       return true;
     } else if (Number(nuevo.codigo) === Number(productoX.siguiente.codigo)) {
-      return false; // Ya exite, no se agrega
+      return false; // Ya existe, no se agrega
     } else {
       return this._agregate(nuevo, productoX.siguiente);
     }
